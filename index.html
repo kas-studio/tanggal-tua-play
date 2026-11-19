@@ -13,9 +13,9 @@
     <meta property="og:description" content="Bertahan 11 hari anak kos Jakarta menuju Tanggal 1 tanpa Pinjol." />
     <meta property="og:image" content="/assets/title-keyart.jpg" />
     <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F27D42'/%3E%3Ccircle cx='32' cy='35' r='19' fill='%23FFF5E4' stroke='%232C1E26' stroke-width='4'/%3E%3Crect x='17' y='21' width='30' height='7' rx='3' fill='%23FFD166' stroke='%232C1E26' stroke-width='3'/%3E%3Ccircle cx='25' cy='37' r='3' fill='%232C1E26'/%3E%3Ccircle cx='39' cy='37' r='3' fill='%232C1E26'/%3E%3Cpath d='M26 44 Q32 49 38 44' fill='none' stroke='%232C1E26' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
-    <link id="app-touch-icon" rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-B6vVzaJL.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-sjslPXCb.css">
+    <link id="app-touch-icon" rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <script type="module" crossorigin src="./assets/index-CQ7P3zYN.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B9dyKhxM.css">
   </head>
   <body>
     <div id="app">
@@ -187,6 +187,11 @@
             </div>
 
             <div class="setup-section">
+              <button class="santai-toggle setup-santai" data-santai-toggle>MODE SANTAI: MATI</button>
+              <div class="santai-note">Pasar, dapur, dan chat malam tanpa hitung mundur. Tidak berlaku di Tanggal Tua Harian.</div>
+            </div>
+
+            <div class="setup-section">
               <div class="setup-label">KASTA KOS</div>
               <div class="kasta-row">
                 <button id="btn-kasta-down" class="kasta-step" aria-label="Turunkan Kasta">-</button>
@@ -255,6 +260,7 @@
             <div class="modal-stats" id="pause-stats"></div>
             <div class="modal-btns">
               <button id="btn-resume" class="btn-hero-start compact">LANJUTKAN</button>
+              <button class="btn-secondary santai-toggle" data-santai-toggle>MODE SANTAI: MATI</button>
               <button id="btn-restart-pause" class="btn-secondary">ULANG DARI TGL 20</button>
               <button id="btn-quit-title" class="btn-ghost">KEMBALI KE BERANDA</button>
             </div>
