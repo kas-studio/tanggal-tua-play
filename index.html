@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Tanggal Tua: Sisa 100 Ribu – Simulator Anak Kos</title>
+    <meta name="theme-color" content="#1D1A2E" />
+    <meta property="og:title" content="Tanggal Tua: Sisa Rp100.000" />
+    <meta property="og:description" content="Bertahan 11 hari anak kos Jakarta menuju Tanggal 1 tanpa Pinjol." />
+    <meta property="og:image" content="/assets/title-keyart.jpg" />
+    <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F27D42'/%3E%3Ccircle cx='32' cy='35' r='19' fill='%23FFF5E4' stroke='%232C1E26' stroke-width='4'/%3E%3Crect x='17' y='21' width='30' height='7' rx='3' fill='%23FFD166' stroke='%232C1E26' stroke-width='3'/%3E%3Ccircle cx='25' cy='37' r='3' fill='%232C1E26'/%3E%3Ccircle cx='39' cy='37' r='3' fill='%232C1E26'/%3E%3Cpath d='M26 44 Q32 49 38 44' fill='none' stroke='%232C1E26' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link id="app-touch-icon" rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <script type="module" crossorigin src="./assets/index-DgIklVFg.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Czyl5G9d.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Serene Minimalist Desktop Backdrop -->
+      <div class="desktop-backdrop" aria-hidden="true">
+        <div class="alley-glow"></div>
+        <aside class="desktop-caption">
+          <div class="caption-kicker">KOSAN GANG KANCIL • JAKARTA</div>
+          <div class="caption-title">Tanggal Tua</div>
+          <div class="caption-sub">Sisa Rp100.000 • Simulator Anak Kos</div>
+          <div class="caption-keys">
+            <div><kbd>Klik / Tap</kbd><span>Belanja, Masak &amp; Aksi</span></div>
+            <div><kbd>Drag</kbd><span>Susun Kulkas &amp; Panci</span></div>
+            <div><kbd>R</kbd><span>Putar Bentuk Bahan</span></div>
+            <div><kbd>Space</kbd><span>Saklar / Buang Uap</span></div>
+            <div><kbd>M</kbd><span>Mute Audio</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Portrait 9:16 Game Viewport -->
+      <div id="game-shell" class="game-shell">
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Compact 2-Row Top Survival HUD (<= 84px, 44px touch targets) -->
+        <header id="hud-top" class="hud-top hidden">
+          <div class="hud-row-1">
+            <div class="calendar-pill" id="hud-date-pill" title="Tanggal Kos">
+              <span class="cal-tag">TGL</span>
+              <span class="cal-num" id="hud-day-num">20</span>
+              <span class="cal-sub" id="hud-day-label">SEN</span>
+            </div>
+
+            <div class="wallet-pill" id="hud-wallet-pill">
+              <span class="wallet-val" id="hud-money">Rp100.000</span>
+              <span class="wallet-sub" id="hud-jatah">jatah Rp8.000/hari</span>
+            </div>
+
+            <div class="hud-actions">
+              <button class="icon-btn" id="btn-recipes" title="Buku Resep Keramat" aria-label="Buku Resep"></button>
+              <button class="icon-btn" id="btn-mute" title="Suara (M)" aria-label="Mute"></button>
+              <button class="icon-btn" id="btn-pause" title="Jeda" aria-label="Pause"></button>
+            </div>
+          </div>
+
+          <div class="hud-row-2">
+            <div class="hud-meters">
+              <div class="meter-chip" id="meter-gut" title="Kesehatan Lambung">
+                <span class="meter-svg" id="ico-gut"></span>
+                <div class="meter-track"><div class="meter-fill gut" id="bar-gut" style="width: 80%"></div></div>
+                <span class="meter-num" id="val-gut">80</span>
+              </div>
+              <div class="meter-chip" id="meter-sanity" title="Kewarasan & Gengsi">
+                <span class="meter-svg" id="ico-sanity"></span>
+                <div class="meter-track"><div class="meter-fill sanity" id="bar-sanity" style="width: 80%"></div></div>
+                <span class="meter-num" id="val-sanity">80</span>
+              </div>
+              <div class="meter-chip" id="meter-power" title="Token Listrik 450VA">
+                <span class="meter-svg" id="ico-power"></span>
+                <div class="meter-track"><div class="meter-fill power" id="bar-power" style="width: 65%"></div></div>
+                <span class="meter-num" id="val-power">65%</span>
+              </div>
+            </div>
+            <div class="phase-strip" id="phase-strip">
+              <span class="phase-badge" id="phase-badge">DISKON</span>
+              <span class="phase-timer" id="phase-timer">SANTAI</span>
+            </div>
+          </div>
+
+          <div class="payday-timeline" id="payday-timeline" aria-label="Progres menuju Tanggal 1"></div>
+        </header>
+
+        <!-- Dynamic Callout Toast -->
+        <div id="callout-layer" class="callout-layer" aria-live="polite"></div>
+
+        <!-- Midnight Smartphone Drama & Day Summary Overlay -->
+        <div id="phone-overlay" class="phone-overlay hidden"></div>
+
+        <!-- STAGE 1: STUDIO SPLASH INTRO (1.6s or Tap to Skip) -->
+        <section id="screen-splash" class="screen-overlay splash-screen">
+          <div class="splash-inner">
+            <div id="splash-logo-slot"></div>
+            <div class="splash-wordmark">TANGGAL TUA</div>
+            <div class="splash-tagline">Kosan Gang Kancil • Jakarta</div>
+            <div class="splash-bar"><span></span></div>
+          </div>
+        </section>
+
+        <!-- STAGE 2: CLEAN FULL-BLEED ANIMATED LANDING PAGE -->
+        <section id="screen-title" class="screen-overlay landing-screen hidden">
+          <div id="title-keyart-layer" class="title-keyart-layer" aria-hidden="true"></div>
+          <header class="landing-hero">
+            <div class="landing-kicker">SIMULATOR ANAK KOS</div>
+            <div id="landing-logo-slot" class="landing-logo-slot"></div>
+            <h1 class="landing-title">TANGGAL TUA</h1>
+            <p class="landing-sub">11 Hari Menuju Gajian • Tanpa Pinjol</p>
+          </header>
+
+          <footer class="landing-dock">
+            <button id="btn-resume-run" class="btn-hero-start btn-hero-resume hidden">
+              <span id="resume-run-label">LANJUTKAN TGL 20</span>
+            </button>
+            <button id="btn-open-setup" class="btn-hero-start">
+              <span>MULAI BERTAHAN</span>
+              <span class="btn-arrow" id="ico-start-arrow"></span>
+            </button>
+            <button id="btn-daily-challenge" class="btn-daily-card">
+              <div class="daily-card-left">
+                <span class="daily-kicker" id="daily-kicker">TANGGAL TUA HARIAN • #TTH</span>
+                <strong class="daily-twist-name" id="daily-twist-name">Tantangan Harian 1.5x Tabungan</strong>
+              </div>
+              <span class="daily-badge" id="daily-badge">STREAK 0</span>
+            </button>
+
+            <div class="landing-nav-row">
+              <button id="btn-title-upgrades" class="nav-pill">
+                <span class="nav-ico" id="ico-nav-home"></span>
+                <span>Upgrade</span>
+                <em id="title-savings">Rp15rb</em>
+              </button>
+              <button id="btn-title-recipes" class="nav-pill">
+                <span class="nav-ico" id="ico-nav-book"></span>
+                <span>Resep</span>
+                <em><span id="title-recipe-count">0</span>/24</em>
+              </button>
+              <button id="btn-title-missions" class="nav-pill">
+                <span class="nav-ico" id="ico-nav-trophy"></span>
+                <span>Misi</span>
+                <em id="title-mission-badge">0/10</em>
+              </button>
+              <button id="btn-title-mute" class="nav-pill icon-only" aria-label="Toggle Audio"></button>
+            </div>
+          </footer>
+        </section>
+
+        <!-- STAGE 3: SLIDE-UP PRE-RUN SETUP SHEET (Character Portraits + Month Mode) -->
+        <section id="screen-setup" class="screen-overlay sheet-backdrop hidden">
+          <div class="setup-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+              <div>
+                <h2>Persiapan Tanggal 20</h2>
+                <p>Pilih karakter &amp; suasana bulan kosanmu</p>
+              </div>
+              <button id="btn-close-setup" class="icon-btn" aria-label="Tutup"></button>
+            </div>
+
+            <div class="setup-section">
+              <div class="setup-label">ANAK KOS</div>
+              <div class="char-cards">
+                <button class="char-card active" data-char="raka">
+                  <canvas data-portrait="raka" width="88" height="88"></canvas>
+                  <div class="char-meta"><strong>Raka</strong><span data-char-sub="raka">Karyawan</span></div>
+                </button>
+                <button class="char-card" data-char="dinda">
+                  <canvas data-portrait="dinda" width="88" height="88"></canvas>
+                  <div class="char-meta"><strong>Dinda</strong><span data-char-sub="dinda">Mahasiswi</span></div>
+                </button>
+                <button class="char-card" data-char="bayu">
+                  <canvas data-portrait="bayu" width="88" height="88"></canvas>
+                  <div class="char-meta"><strong>Bayu</strong><span data-char-sub="bayu">Ojol</span></div>
+                </button>
+                <button class="char-card" data-char="sari">
+                  <canvas data-portrait="sari" width="88" height="88"></canvas>
+                  <div class="char-meta"><strong>Sari</strong><span data-char-sub="sari">SPG Mal</span></div>
+                </button>
+              </div>
+              <div class="mode-desc-box" id="setup-char-desc">Aturan dasar.</div>
+            </div>
+
+            <div class="setup-section">
+              <div class="setup-label">KASTA KOS</div>
+              <div class="kasta-row">
+                <button id="btn-kasta-down" class="kasta-step" aria-label="Turunkan Kasta">-</button>
+                <div class="kasta-info">
+                  <strong id="kasta-name">Kasta 1 • Anak Baru</strong>
+                  <span id="kasta-adds">Aturan dasar</span>
+                </div>
+                <button id="btn-kasta-up" class="kasta-step" aria-label="Naikkan Kasta">+</button>
+              </div>
+            </div>
+
+            <div class="setup-section">
+              <div class="setup-label">TANTANGAN BULAN</div>
+              <div class="mode-grid">
+                <button class="mode-card active" data-mod="normal" id="mod-normal">
+                  <span class="mode-ico" id="ico-mod-normal"></span>
+                  <strong>Biasa</strong>
+                </button>
+                <button class="mode-card" data-mod="hujan" id="mod-hujan">
+                  <span class="mode-ico" id="ico-mod-hujan"></span>
+                  <strong>Hujan</strong>
+                </button>
+                <button class="mode-card" data-mod="kondangan" id="mod-kondangan">
+                  <span class="mode-ico" id="ico-mod-kondangan"></span>
+                  <strong>Kondangan</strong>
+                </button>
+                <button class="mode-card" data-mod="ramadan" id="mod-ramadan">
+                  <span class="mode-ico" id="ico-mod-ramadan"></span>
+                  <strong>Ramadan</strong>
+                </button>
+              </div>
+              <div class="mode-desc-box" id="setup-mode-desc">
+                Bertahan 11 hari standar anak kos Jakarta dengan harga pasar dinamis.
+              </div>
+            </div>
+
+            <button id="btn-play" class="btn-hero-start compact">
+              <span>GAS TANGGAL 20</span>
+              <span class="btn-arrow" id="ico-go-arrow"></span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STAGE 4: HEARTFELT TRANSFER PROLOGUE BEAT (Tanggal 19 -> Tanggal 20) -->
+        <section id="screen-prologue" class="screen-overlay prologue-screen hidden">
+          <div class="transfer-card">
+            <div class="transfer-badge">TANGGAL 19 • TRANSFER BERHASIL</div>
+            <div class="transfer-amount">-Rp2.000.000</div>
+            <div class="transfer-to">Ke: Ibu &amp; Bapak di Kampung</div>
+            <div class="transfer-note">"Buat biaya ujian adek &amp; kontrol klinik Bapak"</div>
+            <div class="transfer-divider"></div>
+            <div class="transfer-now-label">TANGGAL 20 • SISA DOMPET KAMU</div>
+            <div class="transfer-now-val">Rp100.000</div>
+            <p class="transfer-sub">11 hari menuju gajian. Masak hemat, jaga lambung &amp; kewarasan.</p>
+            <button id="btn-prologue-go" class="btn-hero-start compact">
+              <span>SIAP BERTAHAN</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- PAUSE MODAL -->
+        <section id="screen-pause" class="screen-overlay modal-screen hidden">
+          <div class="modal-card">
+            <h2>Istirahat Sebentar</h2>
+            <p class="modal-sub">Tarik napas dulu, anak kos tangguh.</p>
+            <div class="modal-stats" id="pause-stats"></div>
+            <div class="modal-btns">
+              <button id="btn-resume" class="btn-hero-start compact">LANJUTKAN</button>
+              <button id="btn-restart-pause" class="btn-secondary">ULANG DARI TGL 20</button>
+              <button id="btn-quit-title" class="btn-ghost">KEMBALI KE BERANDA</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- BUKU RESEP KERAMAT MODAL -->
+        <section id="screen-recipes" class="screen-overlay modal-screen hidden">
+          <div class="modal-card recipe-book-card">
+            <div class="modal-header-row">
+              <div>
+                <h2>Buku Resep Keramat</h2>
+                <p class="modal-sub" id="recipe-book-sub">Koleksi masakan Magic Com anak kos</p>
+              </div>
+              <button id="btn-close-recipes" class="icon-btn" aria-label="Tutup"></button>
+            </div>
+            <div id="recipe-grid" class="recipe-grid"></div>
+          </div>
+        </section>
+
+        <!-- KATALOG UPGRADE KAMAR KOS MODAL -->
+        <section id="screen-upgrades" class="screen-overlay modal-screen hidden">
+          <div class="modal-card recipe-book-card">
+            <div class="modal-header-row">
+              <div>
+                <h2>Upgrade Kamar Kos</h2>
+                <p class="modal-sub" id="upgrade-savings-sub">Tabungan Kos: Rp15.000</p>
+              </div>
+              <button id="btn-close-upgrades" class="icon-btn" aria-label="Tutup"></button>
+            </div>
+            <div id="upgrade-grid" class="recipe-grid"></div>
+          </div>
+        </section>
+
+        <!-- MISI HARIAN & DINDING LENCANA MODAL -->
+        <section id="screen-missions" class="screen-overlay modal-screen hidden">
+          <div class="modal-card recipe-book-card">
+            <div class="modal-header-row">
+              <div>
+                <h2>Misi &amp; Lencana</h2>
+                <p class="modal-sub" id="missions-sub">3 Misi Harian &amp; 10 Lencana Anak Kos</p>
+              </div>
+              <button id="btn-close-missions" class="icon-btn" aria-label="Tutup"></button>
+            </div>
+            <div id="missions-body" class="missions-scroll"></div>
+          </div>
+        </section>
+
+        <!-- VICTORY / GAME OVER THERMAL RECEIPT SCREEN -->
+        <section id="screen-end" class="screen-overlay end-screen hidden">
+          <div class="end-wrapper">
+            <div class="end-headline" id="end-headline">GAJIAN TIBA!</div>
+            <div class="end-reward-pill" id="end-reward-pill">+Rp0 Tabungan Kos</div>
+            <div class="end-goal" id="end-goal"></div>
+            <div class="receipt-frame">
+              <canvas id="receipt-canvas" width="340" height="500"></canvas>
+            </div>
+            <div class="end-actions">
+              <button id="btn-revive-transfer" class="btn-hero-start btn-hero-resume compact hidden">
+                <span>TRANSFER DARURAT (+Rp25rb) • LANJUT</span>
+              </button>
+              <button id="btn-double-reward" class="btn-secondary gold-pulse-btn hidden">
+                <span id="double-reward-label">2x TABUNGAN KOS (AD)</span>
+              </button>
+              <div class="end-actions-row">
+                <button id="btn-download-struk" class="btn-secondary">BAGIKAN STRUK</button>
+                <button id="btn-end-upgrades" class="btn-secondary emerald-btn">UPGRADE KOS</button>
+              </div>
+              <button id="btn-play-again" class="btn-hero-start compact">MAIN LAGI (TGL 20)</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
