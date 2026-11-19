@@ -14,8 +14,8 @@
     <meta property="og:image" content="/assets/title-keyart.jpg" />
     <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F27D42'/%3E%3Ccircle cx='32' cy='35' r='19' fill='%23FFF5E4' stroke='%232C1E26' stroke-width='4'/%3E%3Crect x='17' y='21' width='30' height='7' rx='3' fill='%23FFD166' stroke='%232C1E26' stroke-width='3'/%3E%3Ccircle cx='25' cy='37' r='3' fill='%232C1E26'/%3E%3Ccircle cx='39' cy='37' r='3' fill='%232C1E26'/%3E%3Cpath d='M26 44 Q32 49 38 44' fill='none' stroke='%232C1E26' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
     <link id="app-touch-icon" rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-CQ7P3zYN.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B9dyKhxM.css">
+    <script type="module" crossorigin src="./assets/index-blEhJM9V.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DrcxfnQz.css">
   </head>
   <body>
     <div id="app">
@@ -44,9 +44,12 @@
         <header id="hud-top" class="hud-top hidden">
           <div class="hud-row-1">
             <div class="calendar-pill" id="hud-date-pill" title="Tanggal Kos">
-              <span class="cal-tag">TGL</span>
-              <span class="cal-num" id="hud-day-num">20</span>
-              <span class="cal-sub" id="hud-day-label">SEN</span>
+              <span class="cal-top">
+                <span class="cal-tag">TGL</span>
+                <span class="cal-num" id="hud-day-num">20</span>
+                <span class="cal-sub" id="hud-day-label">SEN</span>
+              </span>
+              <span class="cal-countdown" id="hud-countdown">11 hari lagi</span>
             </div>
 
             <div class="wallet-pill" id="hud-wallet-pill">
@@ -319,17 +322,19 @@
               <canvas id="receipt-canvas" width="340" height="500"></canvas>
             </div>
             <div class="end-actions">
-              <button id="btn-revive-transfer" class="btn-hero-start btn-hero-resume compact hidden">
-                <span>TRANSFER DARURAT (+Rp25rb) • LANJUT</span>
+              <button id="btn-play-again" class="btn-hero-start compact end-btn">
+                <b>MAIN LAGI</b><small id="play-again-sub">Mulai run baru dari Tanggal 20</small>
               </button>
-              <button id="btn-double-reward" class="btn-secondary gold-pulse-btn hidden">
-                <span id="double-reward-label">2x TABUNGAN KOS (AD)</span>
+              <button id="btn-revive-transfer" class="btn-hero-start btn-hero-resume compact end-btn hidden">
+                <b>LANJUTKAN RUN INI</b><small><span></span></small>
+              </button>
+              <button id="btn-double-reward" class="btn-secondary gold-pulse-btn end-btn hidden">
+                <b>GANDAKAN TABUNGAN</b><small id="double-reward-label"></small>
               </button>
               <div class="end-actions-row">
-                <button id="btn-download-struk" class="btn-secondary">BAGIKAN STRUK</button>
-                <button id="btn-end-upgrades" class="btn-secondary emerald-btn">UPGRADE KOS</button>
+                <button id="btn-download-struk" class="btn-secondary">Bagikan struk</button>
+                <button id="btn-end-upgrades" class="btn-secondary emerald-btn">Upgrade kamar</button>
               </div>
-              <button id="btn-play-again" class="btn-hero-start compact">MAIN LAGI (TGL 20)</button>
             </div>
           </div>
         </section>
